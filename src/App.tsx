@@ -1,6 +1,8 @@
+import { Route, Routes } from "react-router-dom"
 import Header from "./components/Header"
 import SideBar from "./components/SideBar"
 import Videos from "./components/Videos"
+import VedioDetail from "./components/VedioDetail"
 
 
 function App() {
@@ -9,11 +11,16 @@ function App() {
     <>
       <Header/>
       <div className="max-w-[95%] mx-auto">
-        <div className="flex gap-36 justify-between">
+        <div className="flex gap-1">
           <SideBar/>
-          <Videos/>
+          <Routes>
+            <Route path="/" element={<Videos/>}/>
+            <Route path="/:id" element={<VedioDetail/>}/>
+          </Routes>
+          {/* <Videos/> */}
         </div>
       </div>
+      
     </>
   )
 }

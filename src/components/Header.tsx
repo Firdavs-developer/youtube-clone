@@ -1,5 +1,16 @@
-
+import { useState } from "react"
 function Header() {
+  const [ vedios, setVedios ] = useState([])
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    const search = e.target.value;
+    fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${search}&key=AIzaSyDB_ddJA1F_388dV303UxlkOlIOCv4xsS0`)
+    .then(res => res.json())
+    .then(data => setVedios(data.items))
+  }
+
+console.log(vedios)
+
   return (
     <header className="py-[34px] ">
         <nav className="max-w-[95%] mx-auto ">
@@ -9,7 +20,7 @@ function Header() {
                         <img src="/bar-menu.png" alt="bar menu" />
                         <img src="/public/youtubeLogo.png" alt="you tube logo" />
                 </div>
-                <form action="">
+                <form action="" onSubmit={handleSubmit}>
                         <input className="py-4 px-[23px] bg-[#EBEBEB] rounded-[50px] w-[830px]" type="search" placeholder="Search" />
                 </form>
                 <div className="flex gap-[50px] items-center">
