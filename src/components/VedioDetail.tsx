@@ -8,7 +8,7 @@ type IVideo = {
   snippet: {
       title: string,
       description: string, 
-      channelTitle: string,
+      channelTitle?: string,
       thumbnails: {
           high: {
               url: string
@@ -17,7 +17,7 @@ type IVideo = {
 }
 }
 
-function VedioDetail() {
+function VedioDetail({ searchVedios } : { searchVedios: IVideo[] }) {
 
     const [ video, setVedio ] = useState([]);
     const { id } = useParams();
@@ -41,7 +41,7 @@ useEffect(() => {
 
         ))}
       </div>
-      <ListItems/>
+      <ListItems searchVedios={searchVedios}/>
 
     </div>
   )

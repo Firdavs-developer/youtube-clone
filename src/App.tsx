@@ -18,7 +18,7 @@ function App() {
           <SideBar/>
           <Routes>
             <Route path="/" element={<Videos searchVedios={searchVedios}/>}/>
-            <Route path="/:id" element={<VedioDetail/>}/>
+            <Route path="/:id" element={<VedioDetail searchVedios={searchVedios} />}/>
           </Routes>
         </div>
       </div>
