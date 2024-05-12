@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
@@ -13,8 +14,10 @@ export type IVideo = {
         }
     }
 }
-function Videos() {
+function Videos({ searchVedios }: { searchVedios: IVideo[] }) {
     const [ videos, setVedios ] = useState([])
+    console.log(searchVedios);
+    
     
     
     useEffect(() => {
@@ -23,14 +26,19 @@ function Videos() {
     return (
         <div className="ml-40">
             <div className="flex gap-5 flex-wrap">
-                {videos?.map((item: IVideo) => (
+                {searchVedios.length == 0  ? videos?.map((item: IVideo) => (
                     <Link key={item.id} to={`/${item.id}`} className="w-[380px] cursor-pointer">
                         <img className="w-full h-[200px]" src={item.snippet.thumbnails.high.url} alt="" />
                         <h1 className="text-xl font-bold">{item.snippet.title}</h1>
                         <p>{item.snippet.description.slice(0, 100)}</p>
-                    </Link>
-                    
-                ))}
+                    </Link>)) :
+                    searchVedios?.map((item: IVideo) => (
+                        <Link key={item.id} to={`/${item.id}`} className="w-[380px] cursor-pointer">
+                            <img className="w-full h-[200px]" src={item.snippet.thumbnails.high.url} alt="" />
+                            <h1 className="text-xl font-bold">{item.snippet.title}</h1>
+                            <p>{item.snippet.description.slice(0, 100)}</p>
+                        </Link>                    
+                    ))}
             </div>
 
         </div>
